@@ -1,0 +1,38 @@
+
+package com.company;
+
+class No {
+    int valor;
+    No esquerda, direita;
+    int altura;  // novo campo para controle de equilíbrio
+
+    No(int valor) {
+        this.valor = valor;
+        esquerda = direita = null;
+        altura = 1;  // altura inicial de um nó folha é 1
+    }
+}
+
+package com.company;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Arvore {
+    public List<Integer> encontrarNosFolhaRecursivo(No no) {
+        List<Integer> folhas = new ArrayList<>();
+        encontrarFolhas(no, folhas);
+        return folhas;
+    }
+
+    private void encontrarFolhas(No no, List<Integer> folhas) {
+        if (no == null) return;
+
+        if (no.esquerda == null && no.direita == null) {
+            folhas.add(no.valor);
+        } else {
+            encontrarFolhas(no.esquerda, folhas);
+            encontrarFolhas(no.direita, folhas);
+        }
+    }
+}
