@@ -1,0 +1,39 @@
+package com.company;
+
+import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
+
+class Arvore {
+    public List<Integer> encontrarNosFolhaIterativo(No raiz) {
+        List<Integer> folhas = new ArrayList<>();
+        if (raiz == null) return folhas;
+
+        Stack<No> pilha = new Stack<>();
+        pilha.push(raiz);
+
+        while (!pilha.isEmpty()) {
+            No atual = pilha.pop();
+
+            if (atual.esquerda == null && atual.direita == null) {
+                folhas.add(atual.valor);
+            }
+
+            if (atual.direita != null) pilha.push(atual.direita);
+            if (atual.esquerda != null) pilha.push(atual.esquerda);
+        }
+
+        return folhas;
+    }
+}
+package com.company;
+
+class No {
+    int valor;
+    No esquerda, direita;
+
+    No(int valor) {
+        this.valor = valor;
+        esquerda = direita = null;
+    }
+}
